@@ -1,10 +1,13 @@
-name: 'dummy-timer'
-description: 'Provide a description here'
+name: 'repo-backup-arweave'
+description: 'A GitHub action that backs up your source code to Arweave.'
 author: 'Dhaiwat Pandya'
 inputs:
-  milliseconds: # change this
+  arweaveWalletKey:
     required: true
-    description: 'Number of milliseconds to wait'
+    description: 'The private key of the Arweave wallet to use to pay for the backups.'
+outputs:
+  txId:
+    description: 'The transaction ID of the latest copy of your source code uploaded to Arweave.'
 runs:
   using: 'node16'
   main: 'dist/index.js'

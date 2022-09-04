@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
+  "name": "repo-backup-arweave",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "A GitHub action that backs up your repo's source code to Arweave.",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -14,17 +14,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/Dhaiwat10/repo-backup-arweave.git"
   },
   "keywords": [
-    "actions",
-    "node",
-    "setup"
+    "repo",
+    "backup",
+    "arweave"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.6.0"
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.3",
+    "arweave": "^1.11.6",
+    "node-fetch": "^3.2.10"
   },
   "devDependencies": {
     "@types/node": "^16.10.5",
