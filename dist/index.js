@@ -74,21 +74,19 @@ function run() {
                 encoding: 'base64'
             });
             const blob = Buffer.from(base64string, 'base64');
-            // const transaction = await arweave.createTransaction(
-            //   {
-            //     data: blob
-            //   },
-            //   // @ts-expect-error
-            //   key
-            // );
-            // transaction.addTag('Content-Type', 'application/zip');
-            // transaction.addTag('App-Name', 'arweave-repo-backup');
-            // // @ts-expect-error
-            // await arweave.transactions.sign(transaction, key);
-            // await arweave.transactions.post(transaction);
-            // const txId = transaction.id;
-            // core.debug(`Transaction ID: ${txId}`);
-            // core.setOutput('txId', txId);
+            const transaction = yield arweave.createTransaction({
+                data: blob
+            }, 
+            // @ts-expect-error
+            key);
+            transaction.addTag('Content-Type', 'application/zip');
+            transaction.addTag('App-Name', 'arweave-repo-backup');
+            // @ts-expect-error
+            yield arweave.transactions.sign(transaction, key);
+            yield arweave.transactions.post(transaction);
+            const txId = transaction.id;
+            core.debug(`Transaction ID: ${txId}`);
+            core.setOutput('txId', txId);
         }
         catch (error) {
             if (error instanceof Error)
