@@ -1,0 +1,10 @@
+name: 'dummy-timer'
+description: 'Provide a description here'
+author: 'Dhaiwat Pandya'
+inputs:
+  milliseconds: # change this
+    required: true
+    description: 'Number of milliseconds to wait'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
