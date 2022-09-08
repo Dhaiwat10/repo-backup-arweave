@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: repo-backup-arweave
-        uses: Dhaiwat10/repo-backup-arweave@v0.2
+        uses: Dhaiwat10/repo-backup-arweave@v0.3
         with:
           arweave-key: ${{ secrets.ARWEAVE_WALLET_KEY }}
 ```
