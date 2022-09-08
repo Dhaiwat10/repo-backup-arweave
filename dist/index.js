@@ -65,6 +65,7 @@ function run() {
             const key = core.getInput('arweaveWalletKey');
             core.setSecret(key);
             const keyJson = JSON.parse(key);
+            core.debug(keyJson);
             core.setSecret(keyJson);
             const repoOwner = github.context.repo.owner;
             const repoName = github.context.repo.repo;
@@ -83,7 +84,7 @@ function run() {
             yield arweave.transactions.sign(transaction, keyJson);
             yield arweave.transactions.post(transaction);
             const txId = transaction.id;
-            core.debug(`Transaction ID: ${txId}`);
+            core.info(`Transaction ID: ${txId}`);
             core.setOutput('txId', txId);
         }
         catch (error) {

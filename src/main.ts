@@ -19,6 +19,7 @@ async function run(): Promise<void> {
     core.setSecret(key);
 
     const keyJson = JSON.parse(key);
+    core.debug(keyJson);
     core.setSecret(keyJson);
 
     const repoOwner = github.context.repo.owner;

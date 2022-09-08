@@ -11,8 +11,8 @@
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
     "all": "npm run build && npm run format && npm run package && npm test",
-    "dev": "npm run build && npm run package",
-    "action": "act -j test --secret-file my.secrets"
+    "action": "act -j test --secret-file my.secrets",
+    "dev": "npm run build && npm run package && npm run action"
   },
   "repository": {
     "type": "git",
