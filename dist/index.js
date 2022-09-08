@@ -64,7 +64,8 @@ function run() {
         try {
             const key = core.getInput('arweaveWalletKey');
             core.setSecret(key);
-            core.debug(`${key.length}`);
+            const keyJson = JSON.parse(key);
+            core.setSecret(keyJson);
             const repoOwner = github.context.repo.owner;
             const repoName = github.context.repo.repo;
             const repoContents = yield (0, node_fetch_1.default)(`https://api.github.com/repos/${repoOwner}/${repoName}/zipball`);
@@ -76,13 +77,10 @@ function run() {
             const blob = Buffer.from(base64string, 'base64');
             const transaction = yield arweave.createTransaction({
                 data: blob
-            }, 
-            // @ts-expect-error
-            key);
+            }, keyJson);
             transaction.addTag('Content-Type', 'application/zip');
             transaction.addTag('App-Name', 'arweave-repo-backup');
-            // @ts-expect-error
-            yield arweave.transactions.sign(transaction, key);
+            yield arweave.transactions.sign(transaction, keyJson);
             yield arweave.transactions.post(transaction);
             const txId = transaction.id;
             core.debug(`Transaction ID: ${txId}`);
